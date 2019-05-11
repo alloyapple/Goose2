@@ -14,6 +14,9 @@ final class FileTests: XCTestCase {
         let  f = File(path: "testfile.dat")
         XCTAssertFalse(f.exists,  "File exists")
         XCTAssertFalse(f.canRead,  "File canRead")
+
+        let f1 = File(path: "./")
+        XCTAssertTrue(f1.isDirectory,  "isDirectory")
     }
 
     static var allTests = [

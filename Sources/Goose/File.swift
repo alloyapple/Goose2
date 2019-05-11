@@ -4,6 +4,7 @@
 
 import Foundation
 import Glibc
+import GlibcExtra
 
 public class File: Equatable {
 
@@ -57,8 +58,12 @@ public class File: Equatable {
         return false
     }
 
-    //TODO:
     var isDirectory: Bool {
+        var st = stat()
+        if stat(_path, &st) == 0 {
+            let ret = C_S_ISDIR(st.st_mode) == 0
+            return !ret
+        }
         return false
     }
 
