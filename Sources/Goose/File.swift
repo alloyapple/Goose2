@@ -48,13 +48,23 @@ public class File: Equatable {
         return false
     }
 
-    //TODO:
+
     var isFile: Bool {
+        var st = stat()
+        if stat(_path, &st) == 0 {
+            let ret = C_S_ISREG(st.st_mode) == 0
+            return !ret
+        }
         return false
     }
 
-    //TODO:
+
     var isLink: Bool {
+        var st = stat()
+        if stat(_path, &st) == 0 {
+            let ret = C_S_ISLNK(st.st_mode) == 0
+            return !ret
+        }
         return false
     }
 
@@ -68,6 +78,12 @@ public class File: Equatable {
     }
 
     var isDevice: Bool {
+        var st = stat()
+        if stat(_path, &st) == 0 {
+            let ret = C_S_ISBLK(st.st_mode) == 0
+            let ret1 = C_S_ISCHR(st.st_mode) == 0
+            return !ret || !ret1
+        }
         return false
     }
 

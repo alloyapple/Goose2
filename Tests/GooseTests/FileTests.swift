@@ -17,6 +17,7 @@ final class FileTests: XCTestCase {
 
         let f1 = File(path: "./")
         XCTAssertTrue(f1.isDirectory,  "isDirectory")
+        XCTAssertFalse(f1.isLink,  "isLink")
     }
 
     static var allTests = [
