@@ -5,7 +5,7 @@
 import Foundation
 import Glibc
 
-public class File {
+public class File: Equatable {
 
     var _path: String = ""
 
@@ -37,22 +37,27 @@ public class File {
         return false
     }
 
+    //TODO:
     var canWrite: Bool {
         return false
     }
 
+    //TODO:
     var canExecute: Bool {
         return false
     }
 
+    //TODO:
     var isFile: Bool {
         return false
     }
 
+    //TODO:
     var isLink: Bool {
         return false
     }
 
+    //TODO:
     var isDirectory: Bool {
         return false
     }
@@ -61,17 +66,134 @@ public class File {
         return false
     }
 
+
+    //TODO:
     var isHidden: Bool {
         return false
     }
 
+    //TODO:
     var created: Timestamp {
         return Timestamp()
     }
 
-    var LastModified: Timestamp {
+    //TODO:
+    var lastModified: Timestamp {
         return Timestamp()
     }
 
+    //TODO:
+    var size: File {
+        return self
+    }
 
+    //TODO:
+    public func writeable(flag: Bool) {
+
+    }
+
+    //TODO:
+    public func readOnly(flag: Bool) {
+
+    }
+
+    //TODO:
+    public func executable(flag: Bool) {
+
+    }
+
+    //TODO:
+    public func copyTo(path: String) {
+
+    }
+
+    //TODO:
+    public func moveTo(path: String) {
+
+    }
+
+
+    //TODO:
+    public func renameTo(path: String) {
+
+    }
+
+    //TODO:
+    public func linkToHard(path: String) {
+
+    }
+
+    //TODO:
+    public func linkToSymbolic(path: String) {
+
+    }
+
+    //TODO:
+    public func remove(recursive: Bool = false) {
+
+    }
+
+    //TODO:
+    public func createFile() -> Bool {
+        return false
+    }
+
+    //TODO:
+    public func createDirectory() -> Bool {
+        return false
+    }
+
+    //TODO:
+    public func createDirectories() -> Bool {
+        return false
+    }
+
+    //TODO:
+    public func list() -> [String] {
+        return []
+    }
+
+    //TODO:
+    public func list() -> [File] {
+        return []
+    }
+
+    //TODO:
+    public func totalSpace() -> Int64 {
+        return 0
+    }
+
+    //TODO:
+    public func usableSpace() -> Int64 {
+        return 0
+    }
+
+    //TODO:
+    public func freeSpace() -> Int64 {
+        return 0
+    }
+
+    public static func ==(lhs: File, rhs: File) -> Bool {
+        return lhs._path == rhs._path
+    }
+
+    public static func !=(lhs: File, rhs: File) -> Bool {
+        return lhs._path != rhs._path
+    }
+
+    public static func >(lhs: File, rhs: File) -> Bool {
+        return lhs._path > rhs._path
+    }
+
+    public static func >=(lhs: File, rhs: File) -> Bool {
+        return lhs._path >= rhs._path
+    }
+
+    public static func <(lhs: File, rhs: File) -> Bool {
+        return lhs._path < rhs._path
+    }
+
+    public static func <=(lhs: File, rhs: File) -> Bool {
+        return lhs._path <= rhs._path
+    }
 }
