@@ -13,6 +13,7 @@ final class FileTests: XCTestCase {
         // results.
         let  f = File(path: "testfile.dat")
         XCTAssertFalse(f.exists,  "File exists")
+        XCTAssertFalse(f.canRead,  "File canRead")
     }
 
     static var allTests = [
