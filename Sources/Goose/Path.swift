@@ -17,7 +17,7 @@ public struct Path {
 
     }
 
-    func parseUnix() {
+    func parseUnix(path: String) {
 
     }
 }
