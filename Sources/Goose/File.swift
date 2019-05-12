@@ -8,24 +8,24 @@ import GlibcExtra
 
 public class File: Equatable {
 
-    var _path: String = ""
+    var path: String = ""
 
     public init(path: String) {
         if let l = path.last, l == "/" {
-            self._path = String(path.dropLast())
+            self.path = String(path.dropLast())
         } else {
-            self._path = path
+            self.path = path
         }
     }
 
     var exists: Bool {
         var st = stat()
-        return stat(self._path, &st) == 0
+        return stat(self.path, &st) == 0
     }
 
     var canRead: Bool {
         var st = stat()
-        if stat(self._path, &st) == 0 {
+        if stat(self.path, &st) == 0 {
             if st.st_uid == geteuid() {
                 return (st.st_mode & S_IRUSR) != 0
             } else if st.st_gid == getegid() {
@@ -40,7 +40,7 @@ public class File: Equatable {
 
     var canWrite: Bool {
         var st = stat()
-        if stat(self._path, &st) == 0 {
+        if stat(self.path, &st) == 0 {
             if st.st_uid == geteuid() {
                 return (st.st_mode & S_IWUSR) != 0
             } else if st.st_gid == getegid() {
@@ -55,7 +55,7 @@ public class File: Equatable {
 
     var canExecute: Bool {
         var st = stat()
-        if stat(_path, &st) == 0 {
+        if stat(path, &st) == 0 {
             if st.st_uid == geteuid() || geteuid() == 0 {
                 return (st.st_mode & S_IXUSR) != 0
             } else if st.st_gid == getegid() {
@@ -71,7 +71,7 @@ public class File: Equatable {
 
     var isFile: Bool {
         var st = stat()
-        if stat(_path, &st) == 0 {
+        if stat(path, &st) == 0 {
             let ret = C_S_ISREG(st.st_mode) == 0
             return !ret
         }
@@ -81,7 +81,7 @@ public class File: Equatable {
 
     var isLink: Bool {
         var st = stat()
-        if stat(_path, &st) == 0 {
+        if stat(path, &st) == 0 {
             let ret = C_S_ISLNK(st.st_mode) == 0
             return !ret
         }
@@ -90,7 +90,7 @@ public class File: Equatable {
 
     var isDirectory: Bool {
         var st = stat()
-        if stat(_path, &st) == 0 {
+        if stat(path, &st) == 0 {
             let ret = C_S_ISDIR(st.st_mode) == 0
             return !ret
         }
@@ -99,7 +99,7 @@ public class File: Equatable {
 
     var isDevice: Bool {
         var st = stat()
-        if stat(_path, &st) == 0 {
+        if stat(path, &st) == 0 {
             let ret = C_S_ISBLK(st.st_mode) == 0
             let ret1 = C_S_ISCHR(st.st_mode) == 0
             return !ret || !ret1
@@ -215,26 +215,26 @@ public class File: Equatable {
     }
 
     public static func ==(lhs: File, rhs: File) -> Bool {
-        return lhs._path == rhs._path
+        return lhs.path == rhs.path
     }
 
     public static func !=(lhs: File, rhs: File) -> Bool {
-        return lhs._path != rhs._path
+        return lhs.path != rhs.path
     }
 
     public static func >(lhs: File, rhs: File) -> Bool {
-        return lhs._path > rhs._path
+        return lhs.path > rhs.path
     }
 
     public static func >=(lhs: File, rhs: File) -> Bool {
-        return lhs._path >= rhs._path
+        return lhs.path >= rhs.path
     }
 
     public static func <(lhs: File, rhs: File) -> Bool {
-        return lhs._path < rhs._path
+        return lhs.path < rhs.path
     }
 
     public static func <=(lhs: File, rhs: File) -> Bool {
-        return lhs._path <= rhs._path
+        return lhs.path <= rhs.path
     }
 }
