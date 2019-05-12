@@ -65,4 +65,12 @@ public struct Path {
 
         return dirs[index]
     }
+
+    var `extension`: String {
+        if let index = self.name.last(where: { return $0 == "." }) {
+            return self.name[index...]
+        } else {
+            return ""
+        }
+    }
 }
