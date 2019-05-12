@@ -83,4 +83,6 @@ public struct Path {
             return self.name
         }
     }
+
+    static public let separator = "/"
 }
