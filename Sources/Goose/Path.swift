@@ -42,6 +42,10 @@ public struct Path {
         self.dirs.removeLast()
     }
 
+    mutating public func popFrontDirectory() {
+        self.dirs.removeFirst()
+    }
+
     func directory(n: Int) -> String {
         guard n < dirs.count else {
             return name
