@@ -38,13 +38,33 @@ public class File: Equatable {
         return false
     }
 
-    //TODO:
     var canWrite: Bool {
+        var st = stat()
+        if stat(self._path, &st) == 0 {
+            if st.st_uid == geteuid() {
+                return (st.st_mode & S_IWUSR) != 0
+            } else if st.st_gid == getegid() {
+                return st.st_mode & S_IWGRP != 0
+            } else {
+                return (st.st_mode & S_IWOTH) != 0 || geteuid() == 0
+            }
+
+        }
         return false
     }
 
-    //TODO:
     var canExecute: Bool {
+        var st = stat()
+        if stat(_path, &st) == 0 {
+            if st.st_uid == geteuid() || geteuid() == 0 {
+                return (st.st_mode & S_IXUSR) != 0
+            } else if st.st_gid == getegid() {
+                return (st.st_mode & S_IXGRP) != 0
+            } else {
+                return (st.st_mode & S_IXOTH) != 0
+            }
+        }
+
         return false
     }
 
