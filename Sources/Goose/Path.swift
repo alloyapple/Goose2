@@ -67,10 +67,20 @@ public struct Path {
     }
 
     var `extension`: String {
-        if let index = self.name.last(where: { return $0 == "." }) {
-            return self.name[index...]
+        if let index = self.name.lastIndex(of: ".") {
+            return String(self.name[index...])
         } else {
             return ""
+        }
+    }
+
+    var fileName: String {
+        set {
+            self.name = newValue
+        }
+
+        get {
+            return self.name
         }
     }
 }
