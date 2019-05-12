@@ -17,6 +17,27 @@ public struct Path {
 
     }
 
+    mutating public func pushDirectory(dir: String) {
+        guard dir.count > 0 else {
+            return
+        }
+
+        guard dir != "." else {
+            return
+        }
+
+        if dir == ".." {
+            if let last = dirs.last, last != ".." {
+                dirs.removeLast()
+            } else if absolute == false {
+                dirs.append(dir)
+            }
+        } else {
+            dirs.append(dir)
+        }
+
+    }
+
     func parseUnix(path: String) {
 
     }
