@@ -38,6 +38,18 @@ public struct Path {
 
     }
 
+    mutating public func popDirectory() {
+        self.dirs.removeLast()
+    }
+
+    func directory(n: Int) -> String {
+        guard n < dirs.count else {
+            return name
+        }
+
+        return dirs[n]
+    }
+
     func parseUnix(path: String) {
 
     }
