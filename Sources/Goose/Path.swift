@@ -20,4 +20,12 @@ public struct Path {
     func parseUnix(path: String) {
 
     }
+
+    subscript(index: Int) -> String {
+        guard index < dirs.count else {
+            return name
+        }
+
+        return dirs[index]
+    }
 }
