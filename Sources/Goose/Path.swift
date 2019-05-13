@@ -14,7 +14,16 @@ public struct Path {
     var absolute: Bool = false
 
     public init(_ path: String) {
+        guard path.count > 0 else {
+            return
+        }
 
+        var it = path.first!
+        if it == "/" {
+            absolute = true
+        } else if it == "~" {
+
+        }
     }
 
     mutating public func pushDirectory(dir: String) {
